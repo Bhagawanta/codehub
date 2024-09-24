@@ -62,7 +62,7 @@ const SignIn = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
       <div className="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-700 shadow-md rounded-lg">
         <div className="text-center dark:text-white">CodeHub</div>
         <div className="text-center">Sign In</div>

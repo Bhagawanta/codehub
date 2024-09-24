@@ -73,7 +73,8 @@ pre {
 
 pre code {
   font-family: 'Fira Code' !important;
-  white-space: break-spaces !important                                                                                                                                                                                                                                      ;
+  white-space: break-spaces !important;
+  word-break: break-word !important;                                                                                                                                                                                                                                     ;
 }
 
 .token.punctuation {
