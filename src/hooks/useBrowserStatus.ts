@@ -2,18 +2,20 @@
 
 import { useEffect, useState } from "react";
 
-export default function useBrowserStatus(): Boolean {
+export default function useBrowserStatus() {
 
-    const [isOnline, setIsOnline] = useState<boolean>(window?.navigator.onLine || false)
+    if(typeof window !== undefined) {
+        const [isOnline, setIsOnline] = useState<boolean>(window?.navigator.onLine || false)
     
-    useEffect(()=>{
-        window.addEventListener('online',() => {
-            setIsOnline(true)
-        });
-        window.addEventListener('offline',()=>{
-            setIsOnline(false)
-        })
-    },[])
-
-    return isOnline 
+        useEffect(()=>{
+            window.addEventListener('online',() => {
+                setIsOnline(true)
+            });
+            window.addEventListener('offline',()=>{
+                setIsOnline(false)
+            })
+        },[])
+    
+        return isOnline 
+    }
 }

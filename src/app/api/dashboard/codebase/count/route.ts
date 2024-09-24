@@ -2,6 +2,9 @@ import { COOKIE } from "@/lib/constant"
 import dbConnect from "@/lib/dbConnect"
 import { getUserIDFromToken } from "@/lib/jwt"
 import CodeBaseModel from "@/models/Codebase"
+import { NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
     try {
@@ -19,14 +22,14 @@ export async function GET(request: Request) {
             },
             },
         ]);
-        return Response.json({
+        return NextResponse.json({
             success: true,
             message: "Codebase count",
             data: result
         },{ status: 200 })
     } catch (error) {
         console.error('error: ', error)
-        return Response.json({
+        return NextResponse.json({
             success: false,
             message: "Error while getting codebase"
         },{ status: 400 })

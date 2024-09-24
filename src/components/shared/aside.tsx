@@ -41,17 +41,21 @@ const Aside = ({ setShowSidebar }: any) => {
   if (error) return <PageError />;
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <div className="flex space-x-2">
         <Input
           onChange={handleSearch}
           value={search}
           placeholder="Search"
         />
-        <Button onClick={() => {
-          setShowSidebar?.(false);
-          router.push('/dashboard/add-blog')
-        }}>Add</Button>
+        <Button
+          onClick={() => {
+            setShowSidebar?.(false);
+            router.push('/dashboard/add-blog');
+          }}
+        >
+          Add
+        </Button>
       </div>
       <Separator className="bg-slate-100" />
       {isLoading ? (
@@ -72,21 +76,22 @@ const Aside = ({ setShowSidebar }: any) => {
             response.data?.length > 0 &&
             response.data?.map((item: CodeBaseInterface, index: number) => {
               return (
-                <Card
-                  className="cursor-pointer h-12 flex items-center justify-start p-2 relative"
+                <Link
                   key={index}
+                  href={`/dashboard/view-blog/${item._id}`}
+                  onClick={() => setShowSidebar?.(false)}
                 >
-                  <Link href={`/dashboard/view-blog/${item._id}`} onClick={()=> setShowSidebar?.(false)}>
+                  <Card className="cursor-pointer h-12 flex items-center justify-start p-2 relative">
                     <CardDescription>{item.programe_name}</CardDescription>
-                  </Link>
-                  <Image
-                    src={`/${item.language_name}.png`}
-                    alt={`${item.language_name} logo`}
-                    height={25}
-                    width={25}
-                    className="absolute right-1 rounded-full"
-                  />
-                </Card>
+                    <Image
+                      src={`/${item.language_name}.png`}
+                      alt={`${item.language_name} logo`}
+                      height={25}
+                      width={25}
+                      className="absolute right-1 rounded-full"
+                    />
+                  </Card>
+                </Link>
               );
             })
           )}

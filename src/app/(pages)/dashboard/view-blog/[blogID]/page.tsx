@@ -19,47 +19,33 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from '@/hooks/use-toast';
-import { CodeBaseInterface } from '@/models/Codebase';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Prism from 'prismjs';
 import { ArrowLeftIcon, PencilIcon, Trash2Icon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import { mutate } from 'swr';
+import useSWR, { mutate } from 'swr';
 import { useRouter } from 'next/navigation';
+import { fetcher } from '@/lib/utils';
+import ErrorPage from '@/app/error';
 
 const ViewBlog = ({ params }: { params: { blogID: string } }) => {
 
+  const {
+    data,
+    error,
+    isLoading
+  } = useSWR(`/api/dashboard/codebase/${params.blogID}`, fetcher);
+
   const router = useRouter();
 
-  const [blogInformation, setBlogInformation] = useState<CodeBaseInterface>();
-  const [isLoading, setIsLoading] = useState(false);
+  useEffect(()=> {
+    Prism.highlightAll();
+  }, [isLoading])
 
-  useEffect(() => {
-    getBlogInformation();
-  }, [blogInformation]);
-
-  const getBlogInformation = async () => {
-    setIsLoading(true);
-    try {
-      const { data: response } = await axios.get(
-        `/api/dashboard/codebase/${params.blogID}`
-      );
-      setBlogInformation(response.data[0]);
-      Prism.highlightAll();
-    } catch (error) {
-      toast({
-        title: 'Failed',
-        description: 'Retrieval for blog information',
-        variant: 'destructive'
-      });
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  if(error) return <ErrorPage/>
 
   if (isLoading) {
     return (
@@ -77,8 +63,8 @@ const ViewBlog = ({ params }: { params: { blogID: string } }) => {
   }
 
   const handleCopyToClipBoard = async () => {
-    if (blogInformation?.programe_code) {
-      await navigator.clipboard.writeText(blogInformation.programe_code);
+    if (data?.data[0].programe_code) {
+      await navigator.clipboard.writeText(data?.data[0].programe_code);
       toast({
         title: 'Success',
         description: 'Copied to clipboard'
@@ -111,7 +97,7 @@ const ViewBlog = ({ params }: { params: { blogID: string } }) => {
         <Link href="/dashboard">
           <ArrowLeftIcon />
         </Link>
-        <h1>{blogInformation?.language_name}</h1>
+        <h1>{data?.data[0].language_name}</h1>
         <section className="flex gap-1">
           <Button disabled>
             <PencilIcon className="h-4 w-4" />
@@ -142,7 +128,7 @@ const ViewBlog = ({ params }: { params: { blogID: string } }) => {
           <Card>
             <CardHeader>
               <CardDescription>
-                Program - {blogInformation?.programe_name}
+                Program - {data?.data[0].programe_name}
               </CardDescription>
             </CardHeader>
             <CardContent className="cursor-pointer">
@@ -151,7 +137,7 @@ const ViewBlog = ({ params }: { params: { blogID: string } }) => {
                 onClick={handleCopyToClipBoard}
               >
                 <code className="language-java">
-                  {blogInformation?.programe_code}
+                  {data?.data[0].programe_code}
                 </code>
               </pre>
             </CardContent>

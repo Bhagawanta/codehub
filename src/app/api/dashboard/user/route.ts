@@ -2,7 +2,9 @@ import { COOKIE } from "@/lib/constant";
 import dbConnect from "@/lib/dbConnect";
 import { getUserIDFromToken } from "@/lib/jwt";
 import UserModel from "@/models/Users";
+import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
     try {
@@ -11,7 +13,7 @@ export async function GET(request: Request) {
 
         const response = await UserModel.find({ _id: getUserIDFromToken(request.headers?.get(COOKIE))})
 
-        return Response.json({
+        return NextResponse.json({
             success: true,
             message: "GET user success",
             data: response?.[0].username
@@ -19,7 +21,7 @@ export async function GET(request: Request) {
 
     } catch (error) {
         console.error('error: ', error)
-        return Response.json({
+        return NextResponse.json({
             success: false,
             message: "Error while creating user"
         },{ status: 400 })
