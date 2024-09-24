@@ -16,6 +16,7 @@ import { APIResponse } from '@/types/APIResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -64,7 +65,14 @@ const SignUp = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-5">
       <div className="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-700 shadow-md rounded-lg">
-        <div className="text-center">CodeHub</div>
+      <div className="text-center flex items-center justify-center dark:text-white">
+          <Image
+            alt='App Logo'
+            src='/codehublogo.png'
+            width={200}
+            height={80}
+          />
+        </div>
         <div className="text-center">Sign Up</div>
         <Form {...form}>
           <form
@@ -138,7 +146,7 @@ const SignUp = () => {
             </Button>
           </form>
         </Form>
-        <div className='text-center text-gray-500 dark:text-white'>
+        <div className='text-center text-sm text-gray-500 dark:text-white'>
           Already have an account? <Link href='/sign-in' className='text-blue-800 dark:text-blue-500'>Sign In</Link>
         </div>
       </div>

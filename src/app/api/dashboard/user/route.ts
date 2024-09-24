@@ -16,7 +16,7 @@ export async function GET(request: Request) {
         return NextResponse.json({
             success: true,
             message: "GET user success",
-            data: response?.[0].username
+            data: response[0]?.username
         },{ status: 200 })
 
     } catch (error) {

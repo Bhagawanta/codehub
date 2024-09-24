@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Loader2, LogOutIcon, MenuIcon, MoonIcon, SunIcon } from 'lucide-react';
 import Link from 'next/link';
 import Aside from '../shared/aside';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -44,12 +45,19 @@ const Navbar = () => {
 
   return (
     <nav className="relative flex items-center justify-between h-12 p-5 shadow-md bg-slate-100 dark:bg-slate-950 dark:border-b-2">
-      <span className="flex gap-1">
+      <span className="flex items-center gap-0">
         <MenuIcon
           className="flex sm:hidden cursor-pointer"
           onClick={() => setShowSidebar(!showSidebar)}
         />
-        <Link href="/dashboard" onClick={()=>setShowSidebar(false)}>CodeHub</Link>
+        <Link href="/dashboard" onClick={()=>setShowSidebar(false)}>
+        <Image
+          alt='App Logo'
+          src='/codehublogo.png'
+          height={50}
+          width={150}
+        />
+        </Link>
       </span>
       {showSidebar ? (
         <div className="absolute left-0 top-12 p-2 block sm:hidden bg-gray-100 h-[calc(100vh-3rem)] overflow-auto z-10 dark:bg-black">
