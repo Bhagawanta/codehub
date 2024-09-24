@@ -19,7 +19,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     setIsSubmitted(true);
     try {
-      const response = await axios.post('/api/logout');
+      const response = await axios.get('/api/logout');
       if (response.data.success) router.replace('/sign-in');
     } catch (error) {
       toast({

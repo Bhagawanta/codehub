@@ -39,7 +39,7 @@ const ViewBlog = ({ params }: { params: { blogID: string } }) => {
 
   useEffect(() => {
     getBlogInformation();
-  }, []);
+  }, [blogInformation]);
 
   const getBlogInformation = async () => {
     setIsLoading(true);
