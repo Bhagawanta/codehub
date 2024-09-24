@@ -9,7 +9,7 @@ export default function NotFound() {
     <div className="flex items-center justify-between p-12 flex-wrap">
       <section className='flex flex-col items-center md:items-start gap-2'>
         <h1 className='font-bold text-5xl'>404</h1>
-        <p className='font-bold text-1xl'>We couldn't find the page you are looking for.</p>
+        <p className='font-bold text-1xl'>We couldn&apos;t find the page you are looking for.</p>
         <Button variant='outline'><Link href="/dashboard" className='font-bold'>Go back to the homepage</Link></Button>
       </section>
       <Image

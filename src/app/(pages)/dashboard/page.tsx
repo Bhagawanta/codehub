@@ -12,7 +12,7 @@ interface LanguageCountInterface {
   count: number;
 }
 
-const page = () => {
+const Dashboard = () => {
   const {
     data,
     error,
@@ -106,4 +106,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Dashboard;

@@ -30,7 +30,8 @@ import { codeBaseSchema } from '@/schemas/codeBaseSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import AceEditor from 'react-ace';
 import { mutate } from 'swr'
-const page = () => {
+
+const AddBlog = () => {
 
   const router = useRouter();
   const { toast } = useToast();
@@ -198,4 +199,4 @@ const page = () => {
   )
 }
 
-export default page
+export default AddBlog

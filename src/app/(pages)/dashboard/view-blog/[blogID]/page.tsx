@@ -30,7 +30,7 @@ import Link from 'next/link';
 import { mutate } from 'swr';
 import { useRouter } from 'next/navigation';
 
-const page = ({ params }: { params: { blogID: string } }) => {
+const ViewBlog = ({ params }: { params: { blogID: string } }) => {
 
   const router = useRouter();
 
@@ -162,4 +162,4 @@ const page = ({ params }: { params: { blogID: string } }) => {
   );
 };
 
-export default page;
+export default ViewBlog;

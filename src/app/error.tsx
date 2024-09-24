@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 
-const error = () => {
+const ErrorPage = () => {
   const router = useRouter();
   return (
     <div className='flex min-h-screen flex-1 items-center justify-center gap-5'>
@@ -13,4 +13,4 @@ const error = () => {
   )
 }
 
-export default error
+export default ErrorPage

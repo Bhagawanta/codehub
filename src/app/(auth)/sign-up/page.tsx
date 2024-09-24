@@ -22,7 +22,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-const page = () => {
+const SignUp = () => {
   const { toast } = useToast();
   const router = useRouter();
   const { setLocalStorage } = useLocalStorage();
@@ -146,4 +146,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignUp;
