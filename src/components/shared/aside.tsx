@@ -61,7 +61,7 @@ const Aside = ({ setShowSidebar }: any) => {
       {isLoading ? (
         <div className="flex flex-col gap-2 overflow-auto">{loader()}</div>
       ) : (
-        <section className="flex flex-col gap-2 overflow-auto">
+        <section className="flex flex-col gap-2 overflow-auto max-h-[70vh]">
           {response.data?.length === 0 ? (
             <div className="flex flex-col gap-5 items-center">
               <Image
@@ -82,7 +82,7 @@ const Aside = ({ setShowSidebar }: any) => {
                   onClick={() => setShowSidebar?.(false)}
                 >
                   <Card className="cursor-pointer h-12 flex items-center justify-start p-2 relative">
-                    <CardDescription>{item.programe_name}</CardDescription>
+                    <CardDescription className="max-w-[300px] truncate">{item.programe_name}</CardDescription>
                     <Image
                       src={`/${item.language_name}.png`}
                       alt={`${item.language_name} logo`}
