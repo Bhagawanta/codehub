@@ -99,3 +99,6 @@ pre code {
 .token.function {
   color: #FFF !important;
 }
+::-webkit-scrollbar {
+  display: none;
+}
