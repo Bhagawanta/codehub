@@ -82,7 +82,7 @@ const Aside = ({ setShowSidebar }: any) => {
                   onClick={() => setShowSidebar?.(false)}
                 >
                   <Card className="cursor-pointer h-12 flex items-center justify-start p-2 relative">
-                    <CardDescription className="max-w-[300px] truncate">{item.programe_name}</CardDescription>
+                    <CardDescription className="max-w-[250px] truncate" title={item.program_name}>{item.programe_name}</CardDescription>
                     <Image
                       src={`/${item.language_name}.png`}
                       alt={`${item.language_name} logo`}
